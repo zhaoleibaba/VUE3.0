@@ -19,13 +19,13 @@ module.exports = {
             .end();
         };
         /** cli3 移除prefetch 预加载插件 */
-        // config.plugins.delete('prefetch')
+        config.plugins.delete('prefetch')
         /** cli3 或者修改预加载选项 */
-        config.plugin('prefetch').tap(options => {
-            options[0].fileBlacklist = options[0].fileBlacklist || [];
-            options[0].fileBlacklist.push(/myasyncRoute(.)+?\.js$/);
-            return options
-        })
+        // config.plugin('prefetch').tap(options => {
+        //     options[0].fileBlacklist = options[0].fileBlacklist || [];
+        //     options[0].fileBlacklist.push(/myasyncRoute(.)+?\.js$/);
+        //     return options
+        // })
     },
     configureWebpack: config => {
         if (process.env.NODE_ENV === 'production') {
