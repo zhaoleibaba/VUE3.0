@@ -19,13 +19,13 @@ module.exports = {
             .end();
         };
         /** cli3 移除prefetch 预加载插件 */
-        // config.plugins.delete('prefetch')
+        config.plugins.delete('prefetch')
         /** cli3 或者修改预加载选项 */
-        config.plugin('prefetch').tap(options => {
-            options[0].fileBlacklist = options[0].fileBlacklist || [];
-            options[0].fileBlacklist.push(/myasyncRoute(.)+?\.js$/);
-            return options
-        })
+        // config.plugin('prefetch').tap(options => {
+        //     options[0].fileBlacklist = options[0].fileBlacklist || [];
+        //     options[0].fileBlacklist.push(/myasyncRoute(.)+?\.js$/);
+        //     return options
+        // })
     },
     configureWebpack: config => {
         if (process.env.NODE_ENV === 'production') {
@@ -39,24 +39,46 @@ module.exports = {
                         deleteOriginalAssets: false, //是否删除原文件
                         minRatio: 0.8 //只有压缩率比这个值小的资源才会被处理
                     }),
-                    // new optimization.SplitChunksPlugin({
-                    //     chunks: "async",
-                    //     minSize: 20000,
-                    //     minChunks: 2,
-                    //     maxAsyncRequests: 3,
-                    //     maxInitialRequests: 3,
-                    //     name: true
-                    // })
                 ]
             }
-            config.optimization.SplitChunksPlugin({
-                chunks: "async",
-                minSize: 20000,
-                minChunks: 2,
-                maxAsyncRequests: 3,
-                maxInitialRequests: 3,
-                name: true
+            // 将每个依赖包打包成单独的js文件
+            let optimization = {
+                runtimeChunk: 'single',
+                splitChunks: {
+                    chunks: 'async', // all
+                    maxInitialRequests: Infinity,
+                    minSize: 20000, // 依赖包超过20000bit将被单独打包
+                    minChunks: 2,
+                    maxAsyncRequests: 3,
+                    maxInitialRequests: 3,
+                    name: true,
+                    cacheGroups: {
+                        vendor: {
+                            test: /[\\/]node_modules[\\/]/,
+                            name (module) {
+                                // get the name. E.g. node_modules/packageName/not/this/part.js
+                                // or node_modules/packageName
+                                const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1]
+                                // npm package names are URL-safe, but some servers don't like @ symbols
+                                return `npm.${packageName.replace('@', '')}`
+                            }
+                        }
+                    }
+                }
+            }
+            Object.assign(config, {
+                optimization
             })
+            // config.optimization.SplitChunksPlugin({
+            //     chunks: "async",
+            //     minSize: 20000,
+            //     minChunks: 2,
+            //     maxAsyncRequests: 3,
+            //     maxInitialRequests: 3,
+            //     name: true
+            // })
+        }else{
+            config.mode = 'development'
         }
     },
     css: {

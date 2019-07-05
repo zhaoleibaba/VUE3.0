@@ -1,17 +1,18 @@
 import request from '@/utils/request';
+// import { AjaxResponse } from '../types/ajax';
 
-// tslint:disable-next-line:only-arrow-functions
-export const get = function(cate: string) {
-    return request({
-        url: '/api/movie/' + cate ,
-        method: 'GET',
-    });
-};
-// tslint:disable-next-line:only-arrow-functions
-export const post = function(params: string) {
-    return request({
-        url: '/api/movie/' ,
-        method: 'GET',
-        params,
-    });
+export const Ajax = {
+    get: (cate: string) => {
+        return request({
+            url: '/api/movie/' + cate ,
+            method: 'GET',
+        });
+    },
+    post: (params: string) => {
+        return request({
+            url: '/api/movie/' ,
+            method: 'GET',
+            params,
+        });
+    },
 };

@@ -12,6 +12,6 @@ export function getSomeThings(params: any) {
 //     return request({
 //         url: '/api/postSomethings',
 //         methods: 'post',
-//         data: params
+//         data: params,
 //     });
 // }

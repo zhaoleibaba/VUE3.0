@@ -1,7 +1,7 @@
 import Vuex from 'vuex';
 import { Commit } from 'vuex';
 import { State } from '@/store/interface';
-import { get, post } from '@/api/index';
+import { Ajax } from '@/api/index';
 
 interface GetTodayWeatherParam {
     city: string;
@@ -25,15 +25,14 @@ const mutations = {
 };
 const actions = {
     async getTodayWeather(context: { commit: Commit }, cate: string) {
-        const res: any = await get( cate )
-            .then((response: any) => response ).catch((errs: any) => {
-                // tslint:disable-next-line:no-console
-                console.error(errs);
+        const res: any = await Ajax.get( cate )
+            .then((response: any) => response ).catch((err: any) => {
+                return err;
             });
         return res;
     },
     async postList(content: {commit: Commit}, params: any) { // params: GetTodayWeatherParam
-        const res: any = await await post( params ).then((response: any) => {
+        const res: any = await Ajax.post( params ).then((response: any) => {
             return response;
         }).catch((err: any) => {
             return err;
