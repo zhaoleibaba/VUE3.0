@@ -31,6 +31,9 @@
 =======
     "vuex-class": "^0.3.2",
     "eslint": "^3.19.0"
+<<<<<<< HEAD
+>>>>>>> b1ea591cebc924ac17da542150a97071dcde1a74
+=======
 >>>>>>> b1ea591cebc924ac17da542150a97071dcde1a74
   },
   "devDependencies": {
