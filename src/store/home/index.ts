@@ -25,11 +25,11 @@ const mutations = {
 };
 const actions = {
     async getTodayWeather(context: { commit: Commit }, cate: string) {
-        const res: any = await Ajax.get( cate )
-            .then((response: any) => response ).catch((err: any) => {
-                return err;
-            });
-        return res;
+        // const res: any = await Ajax.get( cate )
+        //     .then((response: any) => response ).catch((err: any) => {
+        //         return err;
+        //     });
+        // return res;
     },
     async postList(content: {commit: Commit}, params: any) { // params: GetTodayWeatherParam
         const res: any = await Ajax.post( params ).then((response: any) => {

@@ -100,10 +100,13 @@ module.exports = {
         open: true,
         // proxy: 'http://localhost:4000' // 配置跨域处理,只有一个代理
         proxy: {
-            '/api': {
-                target: '<url>',
+            '/apis': {
+                target: 'http://163.firstshopping.com.cn',
                 ws: true,
-                changeOrigin: true
+                changeOrigin: true,
+                pathRewrite: {
+                    '/apis': '/apis' 
+                }
             },
             '/foo': {
                 target: '<other_url>'

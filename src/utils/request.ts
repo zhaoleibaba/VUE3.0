@@ -11,8 +11,11 @@ const baseURL = process.env.VUE_APP_URL;
  /* 创建axios实例 */
 const service = axios.default.create({
     baseURL,
-    timeout: 0, // 请求超时时间
+    timeout: 30000,
     maxContentLength: 4000,
+    headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+    },
 });
 
 service.interceptors.request.use((config: AxiosRequestConfig) => {

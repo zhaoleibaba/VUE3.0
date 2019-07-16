@@ -2,9 +2,9 @@ import request from '@/utils/request';
 // import { AjaxResponse } from '../types/ajax';
 
 export const Ajax = {
-    get: (cate: string) => {
+    get: (cate: any) => {
         return request({
-            url: '/api/movie/' + cate ,
+            url: '/apis/home/' + cate ,
             method: 'GET',
         });
     },
