@@ -4,6 +4,6 @@ export interface HomeContent {
 }
 export interface State {
     count: number;
-    test1?: HomeContent[];
-    message1: string;
+    test?: HomeContent[];
+    message: string;
 }

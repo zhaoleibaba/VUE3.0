@@ -1,8 +1,7 @@
 import request from '@/utils/request';
-// import { AjaxResponse } from '../types/ajax';
 
-export const Ajax = {
-    get: (cate: any) => {
+const service = {
+    getHomeData: (cate: any) => {
         return request({
             url: '/apis/home/' + cate ,
             method: 'GET',
@@ -16,3 +15,4 @@ export const Ajax = {
         });
     },
 };
+export default service;

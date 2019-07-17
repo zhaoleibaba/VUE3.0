@@ -26,15 +26,7 @@
     "vue-property-decorator": "^8.1.0",
     "vue-router": "^3.0.3",
     "vuex": "^3.0.1",
-<<<<<<< HEAD
     "vuex-class": "^0.3.2"
-=======
-    "vuex-class": "^0.3.2",
-    "eslint": "^3.19.0"
-<<<<<<< HEAD
->>>>>>> b1ea591cebc924ac17da542150a97071dcde1a74
-=======
->>>>>>> b1ea591cebc924ac17da542150a97071dcde1a74
   },
   "devDependencies": {
     "@types/chai": "^4.1.0",

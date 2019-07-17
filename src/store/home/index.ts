@@ -1,21 +1,19 @@
 import Vuex from 'vuex';
 import { Commit } from 'vuex';
 import { State } from '@/store/interface';
-import { Ajax } from '@/api/index';
+import service from '@/api/index';
 
-interface GetTodayWeatherParam {
-    city: string;
+interface PostData {
+    city: any;
 }
 const state: State = {
     count: 0,
-    test1: [],
-    message1: 'ss',
+    test: [],
+    message: 'ss',
 };
 const getters = {
     // tslint:disable-next-line:no-shadowed-variable
     count: (state: State) => state.count,
-    // tslint:disable-next-line:no-shadowed-variable
-    message: (state: State) => state.message1,
 };
 const mutations = {
     // tslint:disable-next-line:no-shadowed-variable
@@ -24,15 +22,15 @@ const mutations = {
     },
 };
 const actions = {
-    async getTodayWeather(context: { commit: Commit }, cate: string) {
-        // const res: any = await Ajax.get( cate )
-        //     .then((response: any) => response ).catch((err: any) => {
-        //         return err;
-        //     });
-        // return res;
+    async getResMsg(context: { commit: Commit }, cate: string) {
+        const res: any = await service.getHomeData( cate )
+            .then((response: any) => response ).catch((err: any) => {
+                return err;
+            });
+        return res;
     },
-    async postList(content: {commit: Commit}, params: any) { // params: GetTodayWeatherParam
-        const res: any = await Ajax.post( params ).then((response: any) => {
+    async postList(content: {commit: Commit}, params: any) {
+        const res: any = await service.post( params ).then((response: any) => {
             return response;
         }).catch((err: any) => {
             return err;

@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
+    <p>{{ datas }}</p>
     <!-- <HelloWorld :msg= 'msg' /> -->
     <HelloWorld v-for="blogPost in blogPosts" :post="blogPost" :key="blogPost.title" />
     <p>{{ message }}</p>
@@ -12,7 +13,7 @@
 import { Component, Vue } from 'vue-property-decorator';
 import {Action, Mutation, State} from 'vuex-class';
 import HelloWorld, { Post } from '@/components/HelloWorld.vue';
-import { Ajax } from '@/api/index.ts';
+import service from '@/api/index.ts';
 import 'reflect-metadata';
 @Component({
   components: {
@@ -41,6 +42,7 @@ export default class Home extends Vue {
     },
   ];
   private msg = 'Welcome to Your Vue.js + TypeScript App';
+  private datas = '';
   private message = 'getthis';
   private cate = 'in_theaters';
   private getListData = [];
@@ -48,14 +50,11 @@ export default class Home extends Vue {
   public changeMessage(): void {
     this.message = 'Good bye';
   }
-  // @Action private movieList!: (cate: string) => any;
+  @Action private getResMsg!: (cate: any) => any;
   private created() {
-    Ajax.get(' ').then(res => { 
-      console.log(res)
+    this.getResMsg('').then( (res: any) => {
+      this.datas = res.msg;
     });
-    // this.movieList( this.cate ).then( (res: any) => {
-    //   this.getListData = res.subjects;
-    // });
   }
 }
 </script>
