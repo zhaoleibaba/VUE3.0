@@ -4,7 +4,9 @@ import Home from './views/Home.vue';
 
 Vue.use(Router);
 
-export default new Router({
+const About = () => import(/* webpackChunkName: "about" */ './views/About.vue');  // webpackPrefetch: true
+
+const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
@@ -12,14 +14,33 @@ export default new Router({
       path: '/',
       name: 'home',
       component: Home,
+      meta: {
+        title: 'home',
+      },
     },
     {
       path: '/about',
       name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited./* webpackPrefetch: true *//* webpackChunkName: "about" */
-      component: () => import(/* webpackPrefetch: true */ './views/About.vue'),
+      component: About,
+      meta: {
+        title: 'About',
+      },
     },
+    // {
+    //   path: '*',
+    //   name: '404',
+    //   component: NotFound,
+    // }
   ],
 });
+
+router.beforeEach((to, from, next) => {
+  // console.log(to);
+  next();
+});
+
+router.afterEach((route) => {
+  document.title = route.meta.title;
+});
+
+export default router;

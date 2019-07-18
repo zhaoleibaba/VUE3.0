@@ -4,11 +4,10 @@ const CompressionPlugin = require('compression-webpack-plugin')
 
 module.exports = {
     /** publicPath  type:{string} default:'/' */
-    publicPath: process.env.NODE_ENV === 'production' ? '/my-app/' : '/',
+    publicPath: process.env.NODE_ENV === 'production' ? '/' : '/',
     outputDir: 'dist',
     assetsDir: 'static',
     lintOnSave: true,
-
     // webpack配置
     chainWebpack: config => {
         /** cli2 添加分析工具 */

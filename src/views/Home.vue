@@ -13,7 +13,6 @@
 import { Component, Vue } from 'vue-property-decorator';
 import {Action, Mutation, State} from 'vuex-class';
 import HelloWorld, { Post } from '@/components/HelloWorld.vue';
-import service from '@/api/index.ts';
 import 'reflect-metadata';
 @Component({
   components: {

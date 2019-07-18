@@ -6,14 +6,9 @@ import './registerServiceWorker';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 
-import { Button, Dialog, MessageBox} from 'element-ui';
-
 Vue.use(VueAxios, axios);
-Vue.use(Button);
-Vue.use(Dialog);
-Vue.prototype.$confirm = MessageBox.confirm;
-
 Vue.config.productionTip = false;
+
 
 new Vue({
   router,
