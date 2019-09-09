@@ -23,7 +23,7 @@ const mutations = {
 };
 const actions = {
     async getResMsg(context: { commit: Commit }, cate: string) {
-        const res: any = await service.getHomeData( cate )
+        const res: any = await service.getHomeData()
             .then((response: any) => response ).catch((err: any) => {
                 return err;
             });

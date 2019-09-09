@@ -1,7 +1,7 @@
 import request from '@/utils/request';
 
 const service = {
-    getHomeData: (cate: any) => {
+    getHomeData: (cate?: any) => {
         return request({
             url: '/apis/home/' + cate ,
             method: 'GET',

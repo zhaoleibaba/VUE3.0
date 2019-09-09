@@ -13,6 +13,7 @@
 import { Component, Vue } from 'vue-property-decorator';
 import {Action, Mutation, State} from 'vuex-class';
 import HelloWorld, { Post } from '@/components/HelloWorld.vue';
+import { VNode } from 'vue'
 import 'reflect-metadata';
 @Component({
   components: {
@@ -45,6 +46,7 @@ export default class Home extends Vue {
   private message = 'getthis';
   private cate = 'in_theaters';
   private getListData = [];
+  private dsd = '222222222222222222222';
 
   public changeMessage(): void {
     this.message = 'Good bye';
@@ -54,6 +56,9 @@ export default class Home extends Vue {
     this.getResMsg('').then( (res: any) => {
       this.datas = res.msg;
     });
+  }
+  render (createElement: any): VNode {
+    return createElement('div', this.dsd)
   }
 }
 </script>
